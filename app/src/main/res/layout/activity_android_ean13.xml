@@ -42,14 +42,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <com.github.seanse.ean13.Ean13View
             android:id="@+id/barcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#FFFFFF"
             android:padding="5sp"
-            android:text=""
+            android:text="$!24J5IH-gbdbah!"
             android:textColor="#000000"
             android:textSize="130sp" />
     </LinearLayout>

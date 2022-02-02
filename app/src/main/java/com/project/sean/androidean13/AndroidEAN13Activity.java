@@ -1,12 +1,11 @@
 package com.project.sean.androidean13;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,7 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class AndroidEAN13Activity extends AppCompatActivity {
+public class AndroidEAN13Activity extends Activity {
 
     TextView t;
 
@@ -85,5 +84,4 @@ public class AndroidEAN13Activity extends AppCompatActivity {
             }
         }
     }
-
 }

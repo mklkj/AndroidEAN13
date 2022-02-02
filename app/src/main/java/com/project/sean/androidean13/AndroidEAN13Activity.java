@@ -1,5 +1,6 @@
 package com.project.sean.androidean13;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -19,26 +20,17 @@ public class AndroidEAN13Activity extends AppCompatActivity {
 
     TextView t;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_android_ean13);
-        Button btn=(Button)findViewById(R.id.btn_create);
-        btn.setOnClickListener( new Button.OnClickListener() {
+        Button btn= findViewById(R.id.btn_create);
+        btn.setOnClickListener(arg0 -> createEAN13Code());
+        Button btn2 = findViewById(R.id.btn_image);
+        btn2.setOnClickListener(arg0 -> imageEAN13Code());
 
-            public void onClick(View arg0) {
-                createEAN13Code();
-            }
-        });
-        Button btn2 = (Button)findViewById(R.id.btn_image);
-        btn2.setOnClickListener( new Button.OnClickListener() {
-
-            public void onClick(View arg0) {
-                imageEAN13Code();
-            }
-        });
-
-        t = (TextView)findViewById(R.id.barcode);
+        t = findViewById(R.id.barcode);
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/EanP72Tt Normal.Ttf");
         t.setTypeface(font);
         t.setText("$!24J5IH-gbdbah!");
@@ -48,7 +40,7 @@ public class AndroidEAN13Activity extends AppCompatActivity {
 
     public void createEAN13Code()
     {
-        EditText e = (EditText)findViewById(R.id.etBarcode);
+        EditText e = findViewById(R.id.etBarcode);
         String s = e.getText().toString();
         if( s == null || s.length() != 12 ) {
             Toast.makeText(AndroidEAN13Activity.this, "A barcode requires 12 numbers.", Toast.LENGTH_SHORT)
@@ -58,7 +50,7 @@ public class AndroidEAN13Activity extends AppCompatActivity {
 
         EAN13CodeBuilder bb = new EAN13CodeBuilder(s);
 
-        TextView t = (TextView)findViewById(R.id.barcode);
+        TextView t = findViewById(R.id.barcode);
         t.setText(bb.getCode());
         Toast.makeText(AndroidEAN13Activity.this, "Barcode generated successfully!", Toast.LENGTH_SHORT)
                 .show();
@@ -77,7 +69,7 @@ public class AndroidEAN13Activity extends AppCompatActivity {
         System.out.print(getFilesDir());
         FileOutputStream outputStream = null;
         try {
-             outputStream = openFileOutput(filename, MODE_WORLD_READABLE);
+             outputStream = openFileOutput(filename, MODE_PRIVATE);
             // Save the bitmap object to file
             tvImage.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
         } catch (FileNotFoundException e) {
